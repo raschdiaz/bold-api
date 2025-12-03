@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bold API</title>
+    <meta name="description" content="Bold API project" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Bold API</h1>
+    </header>
+    <form action="request.php" method="post">
+        <label for="curl_version">Curl version:</label>
+        <select id="curl_version" name="curl_version">
+            <option value="old">Old</option>
+            <option value="new">New</option>
+        </select>
+        </br>
+        <label for="method">Method:</label>
+        <div id="request_method">
+            <select id="method" name="method" autocomplete>
+                <option value="--request GET">GET</option>
+                <option value="--request POST">POST</option>
+                <option value="--request PUT">PUT</option>
+                <option value="--request DELETE">DELETE</option>
+            </select>
+        </div>
+        </br>
+        <label for="url">URL:</label>
+        <input type="text" id="url" name="url" autocomplete size="100" />
+        </br>
+        <label for="api_key">API Key:</label>
+        <input type="text" id="api_key" name="api_key" autocomplete size="100" />
+        </br>
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        console.log("Bold API project loaded");
+
+        // Select the element
+        const selectElement = document.getElementById('curl_version');
+
+        // Add the 'change' event listener
+        selectElement.addEventListener('change', (event) => {
+            const request_method = document.getElementById('request_method');
+            if (event.target.value === 'old') {
+                request_method.innerHTML = `<select id="method" name="method" autocomplete>
+                <option value="--request GET">GET</option>
+                <option value="--request POST">POST</option>
+                <option value="--request PUT">PUT</option>
+                <option value="--request DELETE">DELETE</option>
+            </select>`;
+            } else if (event.target.value === 'new') {
+                request_method.innerHTML = `<select id="method" name="method" autocomplete>
+                <option value="">GET</option>
+                <option value="-X POST">POST</option>
+                <option value="-X PUT">PUT</option>
+                <option value="-X DELETE">DELETE</option>
+            </select>`;
+            }
+        });
+    </script>
+</body>
+
+</html>
